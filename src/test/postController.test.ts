@@ -1,32 +1,30 @@
 import { RoutePost } from '../postController.ts';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { ServiceEndpoint } from '../service.ts';
 import { vi, describe, test, expect, beforeEach } from 'vitest';
-import { Test } from '@nestjs/testing';
 
 describe('RoutePost', () => {
 	let routePost: RoutePost;
-	let serviceEndpoint: ServiceEndpoint;
+	let postDataSpy: unknown;
 
 	beforeEach(async () => {
-		const moduleRef = await Test.createTestingModule({
-			controllers: [RoutePost],
-			providers: [ServiceEndpoint],
-		}).compile();
+		postDataSpy = vi.fn().mockImplementation((body: unknown) => {
+			return { message: 'data received', data: body };
+		});
+		const serviceEndpoint: ServiceEndpoint = {
+			postData: postDataSpy,
+			getMessage: vi.fn(),
+			putData: vi.fn(),
+			getData: vi.fn(),
+		};
 
-		serviceEndpoint = moduleRef.get<ServiceEndpoint>(ServiceEndpoint);
-		routePost = moduleRef.get<RoutePost>(RoutePost);
+		routePost = new RoutePost(serviceEndpoint);
 	});
 
-	describe('findAll', async () => {
+	describe('Post', async () => {
 		test('should handle POST request with body', async () => {
 			const mockBody = { body: 'test' };
-
-			const postDataSpy = vi.fn().mockImplementation((body: unknown) => {
-				return { message: 'data received', data: body };
-			});
-			serviceEndpoint.postData = postDataSpy;
-
-			await routePost.findAll(mockBody);
+			await routePost.post(mockBody);
 			expect(postDataSpy).toHaveBeenCalledWith(mockBody);
 		});
 	});

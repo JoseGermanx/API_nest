@@ -6,7 +6,7 @@ export class ServiceEndpoint {
 		return 'Hello World';
 	}
 
-	postData(body: any): any {
+	postData(body: unknown): unknown {
 		if (!body || Object.keys(body).length === 0) {
 			throw new HttpException(
 				'Request body is missing or empty',
@@ -16,11 +16,11 @@ export class ServiceEndpoint {
 		return { message: 'data received', data: body };
 	}
 
-	putData(id: string): any {
+	putData(id: string): unknown {
 		return { message: id };
 	}
 
-	getData(id: unknown): any {
+	getData(id: unknown): unknown {
 		return { message: id };
 	}
 }

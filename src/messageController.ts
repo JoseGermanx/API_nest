@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { ServiceEndpoint } from './service.ts';
 
 @Controller()

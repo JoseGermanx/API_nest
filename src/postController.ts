@@ -4,10 +4,12 @@ import { ServiceEndpoint } from './service.ts';
 
 @Controller('/post')
 class RoutePost {
+	ServiceEndpoint: ServiceEndpoint | undefined;
 	constructor(private readonly serviceEndpoint: ServiceEndpoint) {}
 
 	@Post()
-	async findAll(@Body() body: unknown) {
+	//ambien el nombre del método de findAll a post
+	async post(@Body() body: unknown) {
 		return this.serviceEndpoint.postData(body);
 	}
 }
