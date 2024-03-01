@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"baseUrl": "src",
+		"outDir": "dist",
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+
+		"target": "es2022",
+		"module": "node16",
+		"moduleResolution": "node16",
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
+		"types": ["vite/client"],
+
+		"strict": true,
+		"skipLibCheck": true
+	},
+	"include": ["src"]
+}

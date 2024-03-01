@@ -1,0 +1,7 @@
+{
+	"typescript.preferences.importModuleSpecifier": "relative",
+	"typescript.preferences.importModuleSpecifierEnding": "minimal",
+	"typescript.suggest.autoImports": true,
+	"typescript.tsdk": "node_modules\\typescript\\lib",
+	"typescript.validate.enable": true
+}
