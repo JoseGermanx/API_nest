@@ -5,7 +5,7 @@ import { vi, describe, test, expect, beforeEach } from 'vitest';
 
 describe('RoutePost', () => {
 	let routePost: RoutePost;
-	let postDataSpy: unknown;
+	let postDataSpy: ServiceEndpoint['postData'];
 
 	beforeEach(async () => {
 		postDataSpy = vi.fn().mockImplementation((body: unknown) => {
